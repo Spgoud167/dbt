@@ -3,17 +3,16 @@ name: terraform-plan
 on:
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
+      targetEnvironment:
         type: choice
+        description: Deploy to
         options:
-          - info
-          - warning
-          - debug
+        - dev
+        required: true
+        default: 'dev'
 jobs:
-  hello-world:
+  plan:
+    name: plan terraform
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
